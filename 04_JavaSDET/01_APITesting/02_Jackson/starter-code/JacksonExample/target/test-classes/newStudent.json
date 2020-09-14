@@ -1,0 +1,10 @@
+{
+  "name": "Jimbob",
+  "age": 25,
+  "courses": [
+    "English",
+    "Maths",
+    "Geography",
+    "Science"
+  ]
+}

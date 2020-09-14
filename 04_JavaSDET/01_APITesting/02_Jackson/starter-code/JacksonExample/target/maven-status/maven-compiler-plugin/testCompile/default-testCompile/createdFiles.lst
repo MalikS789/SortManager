@@ -1,0 +1,5 @@
+org\example\JacksonFileReader.class
+org\example\StudentCollection.class
+org\example\StudentTester.class
+org\example\JacksonFileWriter.class
+org\example\StudentPOJO.class
