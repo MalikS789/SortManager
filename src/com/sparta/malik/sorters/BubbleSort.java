@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class BubbleSort implements Sorter {
 
-    static boolean debug = true;
+    static boolean debug = false;
 
     public int[] sortArray(int[] arrayToSort) {
         return sortArray(arrayToSort, "asc");

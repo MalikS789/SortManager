@@ -2,25 +2,31 @@ package com.sparta.malik.sorters;
 
 public class MergeArrays {
 
-    public static int[] merge(int[] array1, int[] array2) {
-
-        //make an array to size of both arrays combined.
-        int[] newArray = new int[array1.length + array2.length];
-
-        //put values from both arrays into the new big one
-        for (int i = 0; i < newArray.length; i++) {
-            if (i < array1.length) {
-                newArray[i] = array1[i];
+    public static void mergeSortedArray(int[] array1, int[] array2, int[] mergedArray, int leftIndex, int rightIndex) {
+        //Method assumes the arrays are already sorted & might be uneven in length
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        while (i < leftIndex && j < rightIndex) {
+            if (array1[i] < array2[j]) {
+                mergedArray[k] = array1[i];
+                i++;
             } else {
-                newArray[i] = array2[i - array1.length];
+                mergedArray[k] = array2[j];
+                j++;
             }
+            k++;
         }
-
-        //sort the array!
-        BubbleSort bs = new BubbleSort();
-        bs.sortArray(newArray);
-
-        return newArray;
+        while (i < leftIndex) {
+            mergedArray[k] = array1[i];
+            i++;
+            k++;
+        }
+        while (j < rightIndex) {
+            mergedArray[k] = array2[j];
+            j++;
+            k++;
+        }
     }
 
 }
