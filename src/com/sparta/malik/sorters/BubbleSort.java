@@ -14,7 +14,7 @@ public class BubbleSort implements Sorter {
 
     public static int[] sortArray(int[] arrayToSort, String ordering) {
         if (arrayToSort.length == 0) {
-            Printer.printErrorMessage("Cannot sort array of no values!");
+            Printer.printErrorMessage(new NullPointerException());
             return arrayToSort;
         }
         switch (ordering) {
@@ -23,7 +23,7 @@ public class BubbleSort implements Sorter {
             case "desc":
                 return sortDesc(arrayToSort);
             default:
-                Printer.printErrorMessage("Please write either 'acs' or 'desc' to dictate the ordering condition");
+                Printer.printErrorMessage(new Exception("Please write either 'acs' or 'desc' to dictate the ordering condition"));
                 return arrayToSort;
         }
     }

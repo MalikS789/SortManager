@@ -10,7 +10,7 @@ public class MergeSort implements Sorter {
 
     public int[] sortArray(int[] arrayToSort) {
         if (arrayToSort.length == 0) {
-            Printer.printErrorMessage("Cannot sort array of no values!");
+            Printer.printErrorMessage(new NullPointerException());
             return arrayToSort;
         }
         mergeSort(arrayToSort, arrayToSort.length - 1);
@@ -19,7 +19,7 @@ public class MergeSort implements Sorter {
 
     public static void mergeSort(int[] arrayToSort, int length) {
         if (debug) {
-            Printer.printMessage("length " + length + ": " + Arrays.toString(arrayToSort));
+            Printer.printMessage(Arrays.toString(arrayToSort));
         }
         if (length < 2) {
             return;
