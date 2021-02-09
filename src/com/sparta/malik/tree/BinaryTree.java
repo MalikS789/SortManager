@@ -1,4 +1,4 @@
-package com.sparta.malik.sorters;
+package com.sparta.malik.tree;
 
 
 public interface BinaryTree {

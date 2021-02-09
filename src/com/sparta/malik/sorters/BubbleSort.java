@@ -1,6 +1,6 @@
 package com.sparta.malik.sorters;
 
-import com.sparta.malik.Printer;
+import com.sparta.malik.display.Printer;
 
 import java.util.Arrays;
 

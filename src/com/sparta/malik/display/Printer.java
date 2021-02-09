@@ -1,4 +1,4 @@
-package com.sparta.malik;
+package com.sparta.malik.display;
 
 import java.util.Arrays;
 

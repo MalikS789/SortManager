@@ -1,6 +1,4 @@
-package com.sparta.malik;
-
-import com.sparta.malik.sorters.BinaryTree;
+package com.sparta.malik.tree;
 
 import java.util.ArrayList;
 
