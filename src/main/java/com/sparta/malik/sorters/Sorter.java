@@ -1,6 +1,6 @@
 package com.sparta.malik.sorters;
 
-public interface Sorter {
+public interface Sorter<T> {
 
     int[] sortArray(int[] arrayToSort);
 }

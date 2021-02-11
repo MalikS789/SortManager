@@ -1,26 +1,32 @@
-package com.sparta.malik.tree;
+package com.sparta.malik.sorters;
+
+import com.sparta.malik.display.Printer;
 
 import java.util.ArrayList;
 
-public class BinaryTreeImplementation implements BinaryTree {
+public class BinaryTreeImplementation implements BinaryTree, Sorter {
 
-    private Node root = null;
+    private Node root;
 
     class Node {
-        int value;
-        Node left;
-        Node right;
+        public int value;
+        public Node left = null;
+        public Node right = null;
 
         Node(int value) {
             this.value = value;
-            right = null;
-            left = null;
         }
     }
 
     @Override
+    public int[] sortArray(int[] arrayToSort) {
+        addElements(arrayToSort);
+        return getSortedTreeAsc();
+    }
+
+    @Override
     public int getRootElement() {
-       return root.value;
+        return root.value;
     }
 
     @Override
@@ -43,6 +49,7 @@ public class BinaryTreeImplementation implements BinaryTree {
         } else if (element > current.value) {
             current.right = addElement(current.right, element);
         } else {
+            //if it is a duplicate value, ignore it.
             return current;
         }
         return current;
@@ -67,29 +74,31 @@ public class BinaryTreeImplementation implements BinaryTree {
         if (value == current.value) {
             return true;
         }
-        return value < current.value ?
-                findElement(current.left, value) :
-                findElement(current.right, value);
+        return value < current.value
+                ? findElement(current.left, value)
+                : findElement(current.right, value);
     }
 
     @Override
-    public int getLeftChild(int element) throws ChildNotFoundException {
+    public int getLeftChild(int element) {
         Node node = findNode(element, root);
         if (node != null && node.left != null) {
             return node.left.value;
         } else {
-            throw new ChildNotFoundException();
+            Printer.printErrorMessage(new ChildNotFoundException());
         }
+        return element;
     }
 
     @Override
-    public int getRightChild(int element) throws ChildNotFoundException {
+    public int getRightChild(int element) {
         Node node = findNode(element, root);
         if (node != null && node.right != null) {
             return node.right.value;
         } else {
-            throw new ChildNotFoundException();
+            Printer.printErrorMessage(new ChildNotFoundException());
         }
+        return element;
     }
 
     @Override
@@ -98,6 +107,18 @@ public class BinaryTreeImplementation implements BinaryTree {
         int[] array = new int[result.size()];
         for (int i = 0; i < array.length; i++) {
             array[i] = (int) result.get(i);
+        }
+        return array;
+    }
+
+    @Override
+    public int[] getSortedTreeDesc() {
+        ArrayList result = traverseInOrder(new ArrayList(), root);
+        int[] array = new int[result.size()];
+        int j = 0;
+        for (int i = array.length - 1; i > -1; i--) {
+            array[j] = (int) result.get(i);
+            j++;
         }
         return array;
     }
@@ -114,16 +135,16 @@ public class BinaryTreeImplementation implements BinaryTree {
         return null;
     }
 
-    private ArrayList traverseInOrder(ArrayList result, Node node) {
-            if (node != null) {
-                traverseInOrder(result, node.left);
-                result.add(node.value);
-                traverseInOrder(result, node.right);
-            }
-            return result;
+    public ArrayList traverseInOrder(ArrayList result, Node node) {
+        if (node != null) {
+            traverseInOrder(result, node.left);
+            result.add(node.value);
+            traverseInOrder(result, node.right);
+        }
+        return result;
     }
 
-    private ArrayList traversePreOrder(ArrayList result, Node node) {
+    public ArrayList traversePreOrder(ArrayList result, Node node) {
         if (node != null) {
             result.add(node.value);
             traversePreOrder(result, node.left);
@@ -140,18 +161,5 @@ public class BinaryTreeImplementation implements BinaryTree {
         }
         return result;
     }
-
-    @Override
-    public int[] getSortedTreeDesc() {
-        ArrayList result = traverseInOrder(new ArrayList(), root);
-        int[] array = new int[result.size()];
-        int j = 0;
-        for (int i = array.length - 1; i > -1; i--) {
-            array[j] = (int) result.get(i);
-            j++;
-        }
-        return array;
-    }
-
 
 }

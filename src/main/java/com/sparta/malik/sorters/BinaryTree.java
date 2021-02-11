@@ -1,5 +1,4 @@
-package com.sparta.malik.tree;
-
+package com.sparta.malik.sorters;
 
 public interface BinaryTree {
     int getRootElement();
@@ -20,5 +19,9 @@ public interface BinaryTree {
 
     int[] getSortedTreeDesc();
 
-    class ChildNotFoundException extends Exception {}
+    class ChildNotFoundException extends Exception {
+        ChildNotFoundException() {
+            super("Child node does not exist!");
+        }
+    }
 }

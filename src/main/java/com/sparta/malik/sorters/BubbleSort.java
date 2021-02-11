@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class BubbleSort implements Sorter {
 
-    static boolean debug = false;
+    static boolean debug = false; //used if you want verbose output
 
     public int[] sortArray(int[] arrayToSort) {
         return sortArray(arrayToSort, "asc");
@@ -14,7 +14,7 @@ public class BubbleSort implements Sorter {
 
     public static int[] sortArray(int[] arrayToSort, String ordering) {
         if (arrayToSort.length == 0) {
-            Printer.printErrorMessage(new NullPointerException());
+            Printer.printErrorMessage(new Exception("Cannot sort an empty array!"));
             return arrayToSort;
         }
         switch (ordering) {

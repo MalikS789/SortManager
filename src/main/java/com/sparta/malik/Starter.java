@@ -1,51 +1,57 @@
 package com.sparta.malik;
 
 import com.sparta.malik.display.Printer;
-import com.sparta.malik.sorters.BubbleSort;
-import com.sparta.malik.sorters.MergeArrays;
-import com.sparta.malik.sorters.MergeSort;
-import com.sparta.malik.tree.BinaryTreeImplementation;
+import com.sparta.malik.sorters.*;
+
+import java.util.Random;
 
 
 public class Starter {
 
+    private static SortFactory sf = new SortFactory();
+    private static Sorter s;
+
     public static void start() {
+        int[] array = generateRandomArray(16);
 
-        int[] array = {4, -6, 3, 7, 5, 8, 6, -9, 8};
-
-        BubbleSort bs = new BubbleSort();
-        bs.sortArray(array);
-
+        Printer.printMessage("Array before sorting using bubble sort: ");
+        Printer.printArray(array);
+        s = sf.getSorter(SortersAvailable.BUBBLESORT);
+        long start = System.nanoTime();
+        s.sortArray(array);
+        long end = System.nanoTime();
+        Printer.printMessage("Array after sorting using bubble sort: (" + (float) (end - start) / 1000000 + " milliseconds)");
         Printer.printArray(array);
 
-        int[] array2 = {6, 67, 234, -5623, 3251, 123, 123, -432, 532};
+        array = generateRandomArray(16);
 
-        MergeSort ms = new MergeSort();
-        ms.sortArray(array2);
+        Printer.printMessage("Array before sorting using merge sort: ");
+        Printer.printArray(array);
+        s = sf.getSorter(SortersAvailable.MERGESORT);
+        start = System.nanoTime();
+        s.sortArray(array);
+        end = System.nanoTime();
+        Printer.printMessage("Array after sorting using merge sort: (" + (float) (end - start) / 1000000 + " milliseconds)");
+        Printer.printArray(array);
 
-        Printer.printArray(array2);
+        array = generateRandomArray(16);
 
-        int[] mergedArray = new int[array.length + array2.length];
-        MergeArrays.mergeSortedArray(array, array2, mergedArray, array.length, array2.length);
-        Printer.printArray(mergedArray);
+        Printer.printMessage("Array before sorting using binary tree sort: ");
+        Printer.printArray(array);
+        s = sf.getSorter(SortersAvailable.BINARYTREESORT);
+        start = System.nanoTime();
+        int[] sortedArray = s.sortArray(array);
+        end = System.nanoTime();
+        Printer.printMessage("Array after sorting using binary tree sort: (" + (float) (end - start) / 1000000 + " milliseconds)");
+        Printer.printArray(sortedArray);
+    }
 
-        BinaryTreeImplementation bt = new BinaryTreeImplementation();
-
-        bt.addElement(6);
-        bt.addElement(4);
-        bt.addElement(8);
-        bt.addElement(3);
-        bt.addElement(5);
-        bt.addElement(7);
-        bt.addElement(9);
-
-        Printer.printMessage("" + bt.findElement(6));
-        Printer.printMessage("" + bt.findElement(4));
-        Printer.printMessage("" + bt.findElement(1));
-
-        Printer.printArray(bt.getSortedTreeAsc());
-        Printer.printArray(bt.getSortedTreeDesc());
-
-
+    public static int[] generateRandomArray(int lengthOfArray) {
+        Random rd = new Random(); // creating Random object
+        int[] arr = new int[lengthOfArray];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = rd.nextInt(100); // storing random integers in an array
+        }
+        return arr;
     }
 }
