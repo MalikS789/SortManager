@@ -1,9 +1,26 @@
 package com.sparta.malik.sorters;
 
+import com.sparta.malik.display.Printer;
+
 public class MergeArrays {
 
     public static void mergeSortedArray(int[] arrayToMerge, int lowestIndex, int midpoint, int highestIndex) {
         //Method assumes the arrays are already sorted & might be uneven in length
+        if (arrayToMerge == null || arrayToMerge.length < 1) {
+            Printer.printErrorMessage(new IllegalArgumentException("Cannot sort an empty array!"));
+            return;
+        } else if (lowestIndex < 0) {
+            Printer.printErrorMessage(new Exception("lowestIndex for mergeSortedArray must be <= 0"));
+            return;
+
+        } else if (highestIndex >= arrayToMerge.length) {
+            Printer.printErrorMessage(new Exception("highestIndex for mergeSortedArray must be < arrayToMerge.length"));
+            return;
+
+        } else if (arrayToMerge.length < 2) {
+            return;
+        }
+
         int leftArray[] = new int[midpoint - lowestIndex + 1];
         int rightArray[] = new int[highestIndex - midpoint];
 

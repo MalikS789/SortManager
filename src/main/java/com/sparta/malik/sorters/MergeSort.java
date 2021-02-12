@@ -7,7 +7,7 @@ public class MergeSort implements Sorter {
     static boolean debug = false; //used if you want verbose output
 
     public int[] sortArray(int[] arrayToSort) {
-        if (arrayToSort.length == 0) {
+        if (arrayToSort == null || arrayToSort.length == 0) {
             Printer.printErrorMessage(new Exception("Cannot sort an empty array!"));
             return arrayToSort;
         }

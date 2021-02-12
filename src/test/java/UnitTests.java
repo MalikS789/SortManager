@@ -15,6 +15,59 @@ public class UnitTests {
     SortFactory sf = new SortFactory();
 
     @Test
+    @DisplayName("Testing for null array handling for bubble sort")
+    public void nullArrayBubbleSortTest() {
+        Sorter s = sf.getSorter(SortersAvailable.BUBBLESORT);
+        s.sortArray(null);
+    }
+
+    @Test
+    @DisplayName("Testing for null array handling for merge sort")
+    public void nullArrayMergeSortTest() {
+        Sorter s = sf.getSorter(SortersAvailable.MERGESORT);
+        s.sortArray(null);
+    }
+
+    @Test
+    @DisplayName("Testing for null array handling for binary tree sort")
+    public void nullArrayBinaryTreeSortTest() {
+        Sorter s = sf.getSorter(SortersAvailable.BINARYTREESORT);
+        s.sortArray(null);
+    }
+
+    @Test
+    @DisplayName("Testing if merging arrays with a null array will have exception caught properly")
+    public void mergeSortedArrayNullArrayTest() {
+        MergeArrays.mergeSortedArray(null, 0, 10, 50);
+    }
+
+    @Test
+    @DisplayName("Testing to see if the lowestIndex given to the mergeSortedArray gets exception caught")
+    public void mergeSortedArrayIllegallowestIndexTest() {
+        MergeArrays.mergeSortedArray(new int[]{1,2,3}, -1, 1, 2);
+    }
+
+    @Test
+    @DisplayName("Testing to see if the highestIndex >= arrayToMerge.length given to the mergeSortedArray gets exception caught")
+    public void mergeSortedArrayIllegalHighestIndexTest() {
+        MergeArrays.mergeSortedArray(new int[]{1,2,3}, 1, 1, 4);
+    }
+
+    @Test
+    @DisplayName("Testing to see if arrayToMerge.length < 2 given to the mergeSortedArray gets exception caught")
+    public void mergeSortedArrayLengthTest() {
+        MergeArrays.mergeSortedArray(new int[]{1}, 1, 1, 1);
+    }
+
+    @Test
+    @DisplayName("Testing merging arrays")
+    public void mergeSortedArrayTest() {
+        int[] array = {1,2,3,4,6,8,10};
+        MergeArrays.mergeSortedArray(array, 0, 10, 50);
+        Assertions.assertArrayEquals(new int[]{1,2,3,4,6,8,10}, array);
+    }
+
+    @Test
     @DisplayName("Testing to see if the bubble sort ascending is working")
     public void bubbleSortAsc() {
         int[] array = new int[]{1,2,3,9,5,-1,6,7,8,4,0,10};
@@ -43,7 +96,7 @@ public class UnitTests {
 
     @Test
     @DisplayName("Testing to see if the binary tree sort ascending is working")
-    public void BinaryTreeSortAsc() {
+    public void binaryTreeSortAsc() {
         int[] array = new int[]{1,2,3,9,5,-1,6,7,8,4,0,10};
         Sorter sorter = sf.getSorter(SortersAvailable.BINARYTREESORT);
         int[] newArray = sorter.sortArray(array);
@@ -52,7 +105,7 @@ public class UnitTests {
 
     @Test
     @DisplayName("Testing to see if the binary tree sort descending is working")
-    public void BinaryTreeSortDesc() {
+    public void binaryTreeSortDesc() {
         BinaryTreeImplementation bt = new BinaryTreeImplementation();
         bt.addElements(new int[]{1,2,3,9,5,-1,6,7,8,4,0,10});
         int[] result = bt.getSortedTreeDesc();

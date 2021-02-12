@@ -13,7 +13,7 @@ public class BubbleSort implements Sorter {
     }
 
     public static int[] sortArray(int[] arrayToSort, String ordering) {
-        if (arrayToSort.length == 0) {
+        if ( arrayToSort == null || arrayToSort.length == 0 ) {
             Printer.printErrorMessage(new Exception("Cannot sort an empty array!"));
             return arrayToSort;
         }

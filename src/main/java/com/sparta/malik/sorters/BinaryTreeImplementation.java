@@ -20,6 +20,9 @@ public class BinaryTreeImplementation implements BinaryTree, Sorter {
 
     @Override
     public int[] sortArray(int[] arrayToSort) {
+        if (arrayToSort == null) {
+            return new int[0];
+        }
         addElements(arrayToSort);
         return getSortedTreeAsc();
     }
