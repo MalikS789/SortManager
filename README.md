@@ -24,3 +24,8 @@ The application includes:
   name pollution. 
   
   The ideologies of SOLID were considered and as such the application is very easy to maintain and expand upon. Interestingly, the performance tests show that for small array sizes it is actually faster to use a bubble sort, this is most likely due to the overhead nature of the mergesort and binary tree implementations (as they use recusion). However for large array sizes, it was apparant the binary tree was the fastest algorithm, followed by the merge sort in close second and the bubble sort was considerable slower.
+
+Future Work:
+* Having a different file for Performance Tests and Future enhancements
+* Have additional tests for Binary SearchTree
+* Adding a Binary Sort console UI to allow the user to use the additional binary tree methods
