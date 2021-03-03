@@ -1,5 +1,9 @@
 # SortManager
 
+<p align="left">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bubblesort-edited-color.svg/1024px-Bubblesort-edited-color.svg.png" width="100" title="hover text">
+</p>
+
 A Sort Manager application created in Maven, to handle all JUnit dependencies automatically.
 
 The application features 3 different types of sorting algorithms: BubbleSort, MergeSort and Binary Tree.
